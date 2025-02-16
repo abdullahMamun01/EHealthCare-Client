@@ -6,9 +6,10 @@ import Image from "next/image";
 import { CheckOutlined } from "@ant-design/icons";
 import HeroImage from "../../../public/assets/hero-2.png";
 import HeroBgImage from "../../../public/assets/Vector.png";
+import ClinicPlus from "../../../public/assets/clinicic-plus.png";
 export default function HeroSection() {
   return (
-    <div className="hero-section">
+    <div className="hero-section second-bg">
       <div className="container mx-auto px-4 py-12 ">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
@@ -53,7 +54,7 @@ export default function HeroSection() {
           </div>
 
           <div className="">
-            <div className="relative w-5/6 h-5/6 mx-auto">
+            <div className="relative w-5/6 h-5/6 mx-auto hero-doctor-image">
               <Image
                 src={HeroBgImage}
                 alt="Doctor"
@@ -62,6 +63,13 @@ export default function HeroSection() {
                 className="w-full h-full object-contain absolute top-[58%] left-[55%] transform -translate-x-1/2 -translate-y-1/2"
               />
 
+              <Image
+                src={ClinicPlus}
+                alt="Doctor"
+                width={50}
+                height={50}
+                className="object-contain absolute top-20 right-20"
+              />
               <Image
                 src={HeroImage}
                 alt="Doctor"

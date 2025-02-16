@@ -14,7 +14,12 @@
 }
 
 .hero-section{
-  background-image: url("../../public/assets//hexagen-group-1.webp");
+  background-image: url("../../public/assets//hexagen-group-1.webp") ;
   background-position: left top;
   background-repeat: no-repeat;
 }
+/* .second-bg{
+  background-image: url("../../public/assets/hero-bg-2.png");
+  background-position: right top;
+  background-repeat: no-repeat;
+} */
