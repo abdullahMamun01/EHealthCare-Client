@@ -12,7 +12,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="container py-12">
+    <section className="container py-12 mx-auto">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="relative bg-blue-100">
           <div className="relative w-full h-full overflow-hidden rounded-xl">

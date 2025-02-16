@@ -72,7 +72,7 @@ export default function Faqs() {
   ];
 
   return (
-    <div className=" py-12 relative">
+    <div className=" py-12 relative max-w-7xl mx-auto">
       <div className="w-full mx-auto">
         <div className="text-center mb-8">
           <span className="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">

@@ -60,7 +60,7 @@ export default function BestDoctors() {
     },
   ];
   return (
-    <div className=" mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-8">
         <span className="bg-blue-600 text-gray-50 rounded-full px-4 text-sm py-1 mb-6">
           . Featured Doctors .
@@ -70,7 +70,7 @@ export default function BestDoctors() {
         </h1>
       </div>
 
-      <Row gutter={[8, 8]}>
+      <Row gutter={[16, 8]}>
         {doctors.map((doctor) => (
           <Col span={6} key={doctor.id}>
             <Card

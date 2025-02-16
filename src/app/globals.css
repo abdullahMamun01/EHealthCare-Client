@@ -5,3 +5,16 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+.footer{
+  background-image: url("../../public//assets/footer-bg.webp");
+  background-position: right top;
+  background-repeat: no-repeat;
+
+}
+
+.hero-section{
+  background-image: url("../../public/assets//hexagen-group-1.webp");
+  background-position: left top;
+  background-repeat: no-repeat;
+}

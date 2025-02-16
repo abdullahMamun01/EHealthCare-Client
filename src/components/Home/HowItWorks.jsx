@@ -10,25 +10,25 @@ import {
 export default function HowItWorks() {
   const steps = [
     {
-      icon: <SearchOutlined className="text-blue-500 text-3xl"/>,
+      icon: <SearchOutlined className="text-blue-500 text-3xl" />,
       title: "Search Doctor",
       description:
         "Search for a doctor based on specialization, location, or availability.",
     },
     {
-      icon: <UserOutlined className="text-blue-500 text-3xl"/>,
+      icon: <UserOutlined className="text-blue-500 text-3xl" />,
       title: "Check Doctor Profile",
       description:
         "Explore detailed doctor profiles on our platform to make informed healthcare decisions.",
     },
     {
-      icon: <CalendarFilled className="text-blue-500 text-3xl"/>,
+      icon: <CalendarFilled className="text-blue-500 text-3xl" />,
       title: "Schedule Appointment",
       description:
         "After choose your preferred doctor, select a convenient time slot, & confirm your appointment.",
     },
     {
-      icon: <MessageFilled className="text-blue-500 text-3xl"/>,
+      icon: <MessageFilled className="text-blue-500 text-3xl" />,
       title: "Get Your Solution",
       description:
         "Discuss your health concerns with the doctor and receive personalized advice & solution.",
@@ -36,7 +36,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-16 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden max-w-7xl mx-auto">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMjVsNi42NS0xMS41NUw0NSAyMGwtNi42NS0xMS41NUwzMS43IDIwbC02LjY1LTExLjU1TDE4LjM1IDIwbC02LjY1LTExLjU1TDUgMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2YwZjBmMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=')] opacity-10" />
 
@@ -64,25 +64,23 @@ export default function HowItWorks() {
               </h3>
             </div>
             <div className="grid gap-8 grid-cols-2">
-            {steps.map((step, index) => (
-              <div key={index} className="flex gap-6 items-start">
-                <div className="bg-blue-50 p-3.5 w-[60px] h-[60px] rounded-lg">
-                  {step.icon}
+              {steps.map((step, index) => (
+                <div key={index} className="flex gap-6 items-start">
+                  <div className="bg-blue-50 p-3.5 w-[60px] h-[60px] rounded-lg">
+                    {step.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2 text-navy-900">
+                      {step.title}
+                    </h4>
+                    <p className="text-gray-600 font-semibold leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2 text-navy-900">
-                    {step.title}
-                  </h4>
-                  <p className="text-gray-600 font-semibold leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          </div>
-
-          
         </div>
       </div>
     </section>

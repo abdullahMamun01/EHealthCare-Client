@@ -24,33 +24,14 @@ export default function BookingBenefits() {
     },
   ]
 
-  const services = [
-    "Health Care Services",
-    "Talk to Doctors",
-    "Home Care Services",
-    "Multi Speciality Treatments & Doctors",
-    "Lab Testing Services",
-    "Medicines & Supplies",
-    "Hospitals & Clinics",
-  ]
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Services Scroll Banner */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-400 text-white py-3 overflow-hidden">
-        <div className="flex animate-scroll whitespace-nowrap">
-          {[...services, ...services].map((service, index) => (
-            <span key={index} className="mx-8 text-sm font-medium">
-              {service}
-            </span>
-          ))}
-        </div>
-      </div>
+    <div className=" bg-white max-w-7xl mx-auto">
 
       {/* Why Book With Us Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 pb-16 pt-8">
         <div className="text-center mb-12">
-          <Badge color="blue" className="bg-blue-100 text-blue-600 rounded-full px-4 py-1 mb-4">
+          <Badge  color="blue" className="!bg-blue-100 !text-blue-600 rounded-full !px-4 !py-1 mb-4 !font-semibold !mb-4">
             Why Book With Us
           </Badge>
           <h2 className="text-3xl font-bold text-[#1a1c3b]">Compelling Reasons to Choose</h2>
