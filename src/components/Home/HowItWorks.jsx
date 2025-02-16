@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import DoctorImage from "../../public/assets/doctor.png";
+import DoctorImage from "../../../public/assets/doctor.png";
 import {
   CalendarFilled,
   MessageFilled,
@@ -10,25 +10,25 @@ import {
 export default function HowItWorks() {
   const steps = [
     {
-      icon: SearchOutlined,
+      icon: <SearchOutlined className="text-blue-500 text-3xl"/>,
       title: "Search Doctor",
       description:
         "Search for a doctor based on specialization, location, or availability.",
     },
     {
-      icon: UserOutlined,
+      icon: <UserOutlined className="text-blue-500 text-3xl"/>,
       title: "Check Doctor Profile",
       description:
         "Explore detailed doctor profiles on our platform to make informed healthcare decisions.",
     },
     {
-      icon: CalendarFilled,
+      icon: <CalendarFilled className="text-blue-500 text-3xl"/>,
       title: "Schedule Appointment",
       description:
         "After choose your preferred doctor, select a convenient time slot, & confirm your appointment.",
     },
     {
-      icon: MessageFilled,
+      icon: <MessageFilled className="text-blue-500 text-3xl"/>,
       title: "Get Your Solution",
       description:
         "Discuss your health concerns with the doctor and receive personalized advice & solution.",
@@ -66,8 +66,8 @@ export default function HowItWorks() {
             <div className="grid gap-8 grid-cols-2">
             {steps.map((step, index) => (
               <div key={index} className="flex gap-6 items-start">
-                <div className="bg-blue-50 p-4 w-[50px] h-[50px] rounded-lg">
-                  <step.icon className="w-full h-full text-blue-500" />
+                <div className="bg-blue-50 p-3.5 w-[60px] h-[60px] rounded-lg">
+                  {step.icon}
                 </div>
                 <div>
                   <h4 className="text-xl font-bold mb-2 text-navy-900">

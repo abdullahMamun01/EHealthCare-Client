@@ -1,7 +1,8 @@
 import { Button } from "antd";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import Logo from "../../../public/assets/logo.png";
 export default function Navbar() {
   return (
     <nav className="border-b">
@@ -9,10 +10,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-12">
             <Link href="/" className="text-2xl font-bold text-blue-500 uppercase">
-              E-HealthEase
+              {/* E-HealthEase */}
+              <Image src={Logo} alt="logo"  className="object-contain max-h-[100px] max-w-[100px]"/>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-blue-500">
+              <Link href="/" className="text-blue-500 font-semibold">
                 Home
               </Link>
               <Link

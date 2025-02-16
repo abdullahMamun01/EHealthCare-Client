@@ -4,8 +4,8 @@ import React from "react";
 import { Button } from "antd";
 import Image from "next/image";
 import { CheckOutlined } from "@ant-design/icons";
-import HeroImage from '../../public/assets/hero-2.png'
-import HeroBgImage from '../../public/assets/Vector.png'
+import HeroImage from '../../../public/assets/hero-2.png'
+import HeroBgImage from '../../../public/assets/Vector.png'
 export default function HeroSection() {
   return (
     <div className="container mx-auto px-4 py-12">
