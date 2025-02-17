@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState } from "react";
@@ -15,10 +16,10 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="container relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="container relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0 ">
       <div className="relative hidden h-full flex-col bg-muted  text-white lg:flex dark:border-r">
         <div className="relative hidden h-full flex-col bg-gradient-to-b from-blue-50 to-sky-50 p-10 text-white lg:flex dark:border-r">
-          <div className="relative z-20 flex items-center text-lg font-medium">
+          <div className="relative z-20 flex items-center text-lg font-medium login-page">
             <Link href="/">
               <span className="text-blue-600 text-2xl font-bold">
                 <Logo />

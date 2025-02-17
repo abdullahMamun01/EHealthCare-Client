@@ -4,7 +4,7 @@ import Image from "next/image"
 import Logo from '../../../public/assets/logo.png'
 export default function Footer() {
   return (
-    <footer className="w-full bg-blue-500  text-[#FBFFFF] py-8 footer">
+    <footer className="w-full bg-blue-700  text-[#FBFFFF] py-8 footer">
       <div className="max-w-7xl px-4 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
           {/* Company Info */}
@@ -97,10 +97,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-200">
+      <div className="border-t border-gray-400">
         <div className="container px-4 py-4 mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center text-[#FBFFFF] text-sm">
-            <p>{new Date().getFullYear()} MadiFax. All rights reserved.</p>
+            <p>{new Date().getFullYear()} <span className="text-gray-400 mx-2">E-HEALTHEASSE.</span> All rights reserved.</p>
             <div className="flex gap-4 mt-2 md:mt-0">
               <Link href="#" className="text-[#FBFFFF]">
                 Terms and conditions
