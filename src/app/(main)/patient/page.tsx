@@ -1,6 +1,7 @@
 import AppointmentScheduler from "@/components/dashboard/patient/AppointmentScheduler";
 import { HealthMetrics } from "@/components/dashboard/patient/HealthMetrics";
 import OverallReport from "@/components/dashboard/patient/OverallReport";
+import PastAppointments from "@/components/dashboard/patient/PastAppointments";
 import Reports from "@/components/dashboard/patient/Reports";
 import { Button } from "antd";
 
@@ -8,7 +9,7 @@ import React from "react";
 
 export default function page() {
   return (
-    <div className=" min-h-screen bg-[#F8F9FA]">
+    <div className=" min-h-screen bg-sky-50">
       <div className="container mx-auto px-6 py-6">
         <div className="flex justify-between items-center mb-8">
           <div>
@@ -47,8 +48,11 @@ export default function page() {
             {/* <Favorites /> */}
           </div>
 
-          <div className="col-span-5 space-y-6">
+          <div className="col-span-5 space-y-0">
            <AppointmentScheduler/>
+          </div>
+          <div className="col-span-7 space-y-6">
+           <PastAppointments/>
           </div>
           <div className="col-span-12">
             <Reports />

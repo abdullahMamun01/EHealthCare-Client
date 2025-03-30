@@ -1,7 +1,8 @@
 
 'use client'
+import { LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { Avatar, Button, Card } from "antd"
-import { ChevronLeft, ChevronRight, MessageSquare, Video } from "lucide-react"
+import { MessageSquare, Video } from "lucide-react"
 import Image from "next/image"
 
 const dates = [
@@ -41,11 +42,11 @@ export default function AppointmentScheduler() {
       <div className="flex items-center justify-between p-5 border-b">
         <h1 className="text-xl font-semibold text-[#1A1D1F]">Appointment</h1>
         <div className="flex gap-3">
-          <Button  className="h-8 w-8 border rounded-full hover:bg-gray-50">
-            <ChevronLeft className="h-4 w-4" />
+          <Button  className="h-8 text-sky-600 w-8 border rounded-full hover:bg-gray-50">
+            <LeftOutlined  className="h-4 w-4 text-gray-600" />
           </Button>
           <Button  className="h-8 w-8 border rounded-full hover:bg-gray-50">
-            <ChevronRight className="h-4 w-4" />
+            <RightOutlined  className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -67,18 +68,17 @@ export default function AppointmentScheduler() {
         ))}
       </div>
 
-      <div className="p-5 space-y-4">
+      <div className="p-2 px-4 space-y-4">
         {appointments.map((appointment) => (
-          <Card key={appointment.id} className="p-4 border rounded-2xl">
+          <Card key={appointment.id} className="p-0 border border-gray-200 rounded-2xl">
             <div className="flex items-start justify-between">
               <div className="flex gap-3">
                 <Avatar className="h-12 w-12 rounded-xl">
                   <Image src={appointment.image} width={100} height={100} className="object-cover" alt={appointment.doctor} />
-                  
                 </Avatar>
                 <div>
-                  <h3 className="font-semibold text-[#1A1D1F]">{appointment.doctor}</h3>
-                  <p className="text-gray-500 text-sm">{appointment.specialty}</p>
+                  <h3 className="font-semibold text-gray-600 text-lg">{appointment.doctor}</h3>
+                  <p className="text-sky-700 text-sm font-medium">{appointment.specialty}</p>
                 </div>
               </div>
               <div className="rounded-full p-2.5 bg-gray-50">
@@ -91,21 +91,21 @@ export default function AppointmentScheduler() {
             </div>
 
             <div className="mt-4 text-sm text-gray-500 flex items-center gap-1.5">
-              <span className="inline-block w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center">🕒</span>
+              <span className="inline-block w-5 h-5 rounded-full bg-gray-100  items-center justify-center">🕒</span>
               {appointment.date} - {appointment.time}
             </div>
 
             <div className="flex gap-3 mt-4">
               <Button
-                variant="filled"
-                className="flex-1 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-xl h-11"
+                variant="outlined"
+                className="flex-1 flex items-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-xl py-4"
                
               >
-                <MessageSquare className="h-4 w-4 mr-2" />
+                <MessageSquare className="h-4 w-4" />
                 Chat Now
               </Button>
               <Button
-                className="flex-1 bg-[#2B63F1] hover:bg-blue-600 rounded-xl h-11 font-medium"
+                className="flex-1 bg-[#2B63F1] hover:bg-blue-600 text-gray-100 rounded-xl py-4 font-medium"
                 onClick={() => console.log("Attend clicked")}
               >
                 Attend

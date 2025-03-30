@@ -6,12 +6,10 @@ import Faqs from "@/components/Home/Faqs";
 import HeroSection from "@/components/Home/HeroSection";
 import HowItWorks from "@/components/Home/HowItWorks";
 import Specialities from "@/components/Home/Specialities";
-import Footer from "@/components/shared/Footer";
-import Navbar from "@/components/shared/Navbar";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white mx-auto">
-      <Navbar />
+    
       <HeroSection />
       <Specialities/>
       <AboutSection/>
@@ -19,7 +17,7 @@ export default function Home() {
       <HowItWorks/>
       <BookingBenefits/>
       <Faqs/>
-      <Footer/>
+
     </div>
   );
 }

@@ -1,83 +1,20 @@
 "use client";
 import Link from "next/link";
-import {
-  LayoutDashboard,
-  Calendar,
-  Heart,
-  Users2,
-  FileText,
-  Wallet,
-  Activity,
-  Settings,
-  LogOut,
-} from "lucide-react";
-import Image from "next/image";
-import Profile from "../../../../public/assets/profile-06.webp";
-import { usePathname } from "next/navigation";
-import { Fragment } from "react";
-const sidebarLinks = [
-  {
-    slug: "",
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    roles: ["patient", "doctor"],
-  },
-  {
-    slug: "appointments",
-    label: "My Appointments",
-    icon: Calendar,
-    roles: ["patient", "doctor"],
-  },
-  { slug: "favourites", label: "Favourites", icon: Heart, roles: ["patient"] },
-  { slug: "my-patient", label: "My Patients", icon: Users2, roles: ["doctor"] },
-  {
-    slug: "medical-records",
-    label: "Medical Records",
-    icon: FileText,
-    roles: ["patient"],
-  },
-  {
-    slug: "wallet",
-    label: "Wallet",
-    icon: Wallet,
-    roles: ["patient", "doctor"],
-  },
-  {
-    slug: "profile",
-    label: "Update Profile",
-    icon: FileText,
-    roles: ["patient", "doctor"],
-  },
-  {
-    slug: "vitals",
-    label: "Vitals",
-    icon: Activity,
-    roles: ["patient", "doctor"],
-  },
-  {
-    slug: "settings",
-    label: "Settings",
-    icon: Settings,
-    roles: ["patient", "doctor"],
-  },
-  {
-    slug: "logout",
-    label: "Logout",
-    icon: LogOut,
-    roles: ["patient", "doctor"],
-  },
-];
 
-export function Sidebar() {
-  const pathName = usePathname();
-  const role = !pathName.split("/").includes("patient") ? "patient" : "doctor";
+import Image from "next/image";
+import Profile from "../../../../../public/assets/profile-06.webp";
+import { Fragment } from "react";
+import { sidebarLinks } from "./SidebarLink";
+
+
+export function UserSidebar({role} : {role: string}) {
   const basePath = `/dashboard/${role}`;
   const roleByFilterSidebar = sidebarLinks.filter((link) =>
     link.roles.includes(role)
   );
 
   return (
-    <div className="w-full min-h-screen bg-white border-r shadow-md sticky top-0">
+    <div className="w-full min-h-screen bg-white border shadow-md sticky top-0  rounded-md">
       {/* Profile Section */}
       <div className="relative">
         {/* Background Pattern */}
@@ -117,20 +54,18 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="mt-6 px-4">
         <div className="space-y-1">
-          {roleByFilterSidebar.map(
-            ({ slug: href, label, icon: Icon }) => (
-              <Fragment key={label}>
-                <Link
-                  key={href}
-                  href={`${basePath}/${href}`}
-                  className="flex items-center gap-3 px-4 py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg"
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="flex-1">{label}</span>
-                </Link>
-              </Fragment>
-            )
-          )}
+          {roleByFilterSidebar.map(({ slug: href, label, icon: Icon }) => (
+            <Fragment key={label}>
+              <Link
+                key={href}
+                href={`${basePath}/${href}`}
+                className=" flex items-center gap-3 px-4 font-semibold py-2.5 text-gray-700 hover:bg-gray-100 rounded-lg"
+              >
+                <Icon className="w-5 h-5" />
+                <span className="flex-1">{label}</span>
+              </Link>
+            </Fragment>
+          ))}
         </div>
       </nav>
     </div>

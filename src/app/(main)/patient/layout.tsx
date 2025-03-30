@@ -1,4 +1,5 @@
-import { Sidebar } from "@/components/dashboard/patient/PatientSidebar";
+
+import { UserSidebar } from "@/components/dashboard/sidebar/UserSidebar/UserSidebar";
 import { Col, Row } from "antd";
 import React from "react";
 
@@ -8,10 +9,10 @@ export default function PatientDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="px-10">
+    <div className="p-10 rounded-md">
       <Row>
-        <Col span={5}>
-          <Sidebar />
+        <Col span={5} >
+          <UserSidebar role="patient" />
         </Col>
         <Col span={19}>{children}</Col>
       </Row>
