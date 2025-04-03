@@ -3,11 +3,25 @@ import { Menu, MenuProps } from "antd";
 
 import React, { useState } from "react";
 import menuItems from "./menuItems";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+  const router = useRouter()
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
+    const selectedItem = menuItems.find((item) => item.key === e.key);
+    console.log(selectedItem , 'hello');
+    if(selectedItem?.children){
+      selectedItem.children.forEach((child) => {
+        if (child?.route) {
+          router.push(child.route);
+        }
+      })
+    }
+    else if (selectedItem?.route) {
+      router.push(selectedItem.route);
+    }
   };
+
   const [collapsed, setCollapsed] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,4 +1,5 @@
 import { ConfigProvider } from "antd";
+import { ToastProvider } from "./ToastProvider";
 // import zhCN from "antd/es/locale/zh_CN";
 
 export default function AntProvider({
@@ -24,7 +25,7 @@ export default function AntProvider({
         },
       }}
     >
-      {children}
+      <ToastProvider>{children}</ToastProvider>
     </ConfigProvider>
   );
 }

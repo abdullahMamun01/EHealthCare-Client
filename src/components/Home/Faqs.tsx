@@ -11,7 +11,11 @@ export default function Faqs() {
 
   const faqItems = [
     {
-      label: "How do I book an appointment with a doctor?",
+      label: (
+        <span className="text-gray-700">
+          How do I book an appointment with a doctor?
+        </span>
+      ),
       children: (
         <h1 className="font-semibold text-[16px] text-gray-600">
           To book an appointment with a doctor, visit our website and select the
@@ -25,7 +29,11 @@ export default function Faqs() {
     },
 
     {
-      label: "Can I request a specific doctor when booking my appointment?",
+      label: (
+        <span className="text-gray-700">
+          Can I request a specific doctor when booking my appointment?
+        </span>
+      ),
       children: (
         <h1 className="font-semibold text-[16px] text-gray-600">
           Yes, you can select a specific doctor when booking your appointment.
@@ -36,8 +44,11 @@ export default function Faqs() {
       paddingbottom: "10px",
     },
     {
-      label:
-        "What should I do if I need to cancel or reschedule my appointment?",
+      label: (
+        <span className="text-gray-700">
+          What should I do if I need to cancel or reschedule my appointment?
+        </span>
+      ),
       children: (
         <h1 className="font-semibold text-[16px] text-gray-600">
           You can cancel or reschedule your appointment through our website or
@@ -48,7 +59,7 @@ export default function Faqs() {
       paddingbottom: "10px",
     },
     {
-      label: "What if I'm running late for my appointment?",
+      label: <span className="text-gray-700">What if I'm running late for my appointment?</span>,
       children: (
         <h1 className="font-semibold text-[16px] text-gray-600">
           If you're running late, please contact the clinic as soon as possible.
@@ -59,7 +70,7 @@ export default function Faqs() {
       paddingbottom: "10px",
     },
     {
-      label: "Can I book appointments for family members or dependents?",
+      label: <span className="text-gray-700">Can I book appointments for family members or dependents?</span>,
       children: (
         <h1 className="font-semibold text-[16px] text-gray-600">
           Yes, you can book appointments for family members or dependents after
@@ -78,7 +89,7 @@ export default function Faqs() {
           <span className="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4">
             FAQ'S
           </span>
-          <h1 className="text-3xl font-bold text-[#1a1c3b]">
+          <h1 className="text-3xl font-bold text-gray-700">
             Your Questions are Answered
           </h1>
         </div>

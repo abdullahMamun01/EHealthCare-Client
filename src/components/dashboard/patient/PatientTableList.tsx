@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Table, Avatar, Card } from "antd";
 import { ColumnType } from "antd/es/table";
 import Image from "next/image";
@@ -39,8 +39,6 @@ const patientData: Patient[] = [
   },
 ];
 
-
-
 const defaultColumns = [
   {
     title: "Patient Name",
@@ -68,31 +66,43 @@ const defaultColumns = [
     dataIndex: "age",
     key: "age",
     className: " text-md text-gray-600 font-medium",
-
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
     className: " text-md text-gray-600 font-medium",
-
-  }
+  },
 ];
 
 interface PatientTableListProps {
-    columns?: ColumnType<Patient>[];
-    data?: Patient[];
-  }
-  
+  columns?: ColumnType<Patient>[];
+  data?: Patient[];
+}
 
-const PatientTableList = ({ columns = defaultColumns, data = patientData }: PatientTableListProps) => {
+const PatientTableList = ({
+  columns,
+  data = patientData,
+}: PatientTableListProps) => {
+  const allColumns = [...defaultColumns, ...(columns || [])].reduce(
+    (acc: ColumnType<Patient>[], col) => {
+      if (col.key === "key") {
+        return [col, ...acc]; // Place "Patient ID" first
+      }
+      return [...acc, col]; // Keep other columns in order
+    },
+    []
+  );
   return (
-    <Card>
-      <h1 className="pb-2 text-2xl text-gray-700 font-semibold mb-4">
-        Patient List
-      </h1>
-      <div className="overflow-x-auto">
-        <Table columns={columns} dataSource={data} />;
+    <Card
+      title={
+        <h1 className="pb-2 text-2xl text-gray-700 font-semibold my-4">
+          Patient List
+        </h1>
+      }
+    >
+      <div className="bg-white rounded-lg shadow-md overflow-x-auto">
+        <Table columns={allColumns} dataSource={data} />
       </div>
     </Card>
   );

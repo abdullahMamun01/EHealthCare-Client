@@ -4,14 +4,14 @@ import Image from "next/image"
 import Logo from '../../../public/assets/logo.png'
 export default function Footer() {
   return (
-    <footer className="w-full bg-blue-700  text-[#FBFFFF] py-8 footer">
+    <footer className="w-full bg-blue-600  text-[#FBFFFF] py-8 footer">
       <div className="max-w-7xl px-4 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="inline-block">
               <div className="flex items-center space-x-2">
-                <div className=" text-2xl font-bold text-[#FBFFFF]">
+                <div className=" text-2xl font-bold text-gray-100">
                     <Image  src={Logo} alt="logo"  className="object-contain max-h-[100px] max-w-[220px]"/>
                 </div>
               </div>

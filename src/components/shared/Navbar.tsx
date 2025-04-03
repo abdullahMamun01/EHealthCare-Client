@@ -3,15 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Logo from "../../../public/assets/logo.png";
+import { User } from "lucide-react";
 export default function Navbar() {
   return (
     <nav className="border-b sticky top-0 z-50 bg-white py-2">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-12">
-            <Link href="/" className="text-2xl font-bold text-blue-500 uppercase">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-blue-500 uppercase"
+            >
               {/* E-HealthEase */}
-              <Image src={Logo} alt="logo"  className="object-contain max-h-[100px] max-w-[220px]"/>
+              <Image
+                src={Logo}
+                alt="logo"
+                className="object-contain max-h-[100px] max-w-[220px]"
+              />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/" className="text-blue-500 font-semibold">
@@ -50,11 +58,14 @@ export default function Navbar() {
             <Button
               variant="outlined"
               color="blue"
-              className="!text-blue-500 !border-blue-500"
+              className="flex items-center justify-center rounded-full bg-[#15558d] px-6 py-2 font-medium text-gray-700 transition-colors hover:bg-[#124a7c]"
             >
-              Register
+              <span className="mr-1">Register</span>
             </Button>
-            <Button>Login</Button>
+            <Button className="flex items-center justify-center rounded-full bg-blue-500 px-6 py-2 font-medium text-white transition-colors hover:bg-[#0fb3e8]">
+              <User className="h-4 w-4" />
+              <span>Login</span>
+            </Button>
           </div>
         </div>
       </div>

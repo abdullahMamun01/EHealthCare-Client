@@ -58,7 +58,7 @@ export default function HowItWorks() {
               <h2 className="text-lg text-blue-500 font-medium mb-2">
                 How it Works
               </h2>
-              <h3 className="text-4xl font-bold text-navy-900">
+              <h3 className="text-4xl font-bold text-gray-700">
                 4 easy steps to get your solution
                 <span className="text-blue-500 ml-2">+</span>
               </h3>
@@ -70,7 +70,7 @@ export default function HowItWorks() {
                     {step.icon}
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-navy-900">
+                    <h4 className="text-xl font-bold mb-2 text-gray-700">
                       {step.title}
                     </h4>
                     <p className="text-gray-600 font-semibold leading-relaxed">

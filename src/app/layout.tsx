@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@ant-design/v5-patch-for-react-19";
 import AntProvider from "@/provider/AntProvider";
+import { Provider } from "react-redux";
+import { persistor, store } from "@/redux/stores/stores";
+import { PersistGate } from "redux-persist/integration/react";
+import AppProvider from "@/provider/AppProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AntProvider>{children}</AntProvider>
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );

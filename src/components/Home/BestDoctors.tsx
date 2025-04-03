@@ -48,10 +48,10 @@ export default function BestDoctors() {
       <div className="container mx-auto px-4">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-700">
               Book Our Best Doctor
             </h2>
-            <p className="mt-2 text-gray-600">Meet our experts & book online</p>
+            <p className="mt-2 text-gray-600 font-medium">Meet our experts & book online</p>
           </div>
           <div className="flex gap-2">
             <button className="rounded-full bg-blue-100 p-2 text-blue-500 hover:bg-blue-200">

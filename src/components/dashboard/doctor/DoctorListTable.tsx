@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { Avatar, Card, Table } from "antd";
-import { StarFilled, StarOutlined } from "@ant-design/icons";
-interface Doctor {
+import { ColumnType } from "antd/es/table";
+interface IDoctor {
   key: string;
   name: string;
   speciality: string;
@@ -57,13 +57,13 @@ const doctors = [
   },
 ];
 
-const columns = [
+const defaultColumns = [
   {
     title: "Doctor Name",
     dataIndex: "name",
     key: "name",
     className: " text-md text-gray-600 font-medium",
-    render: (text: string, record: Doctor) => (
+    render: (text: string, record: IDoctor) => (
       <div className="flex items-center">
         <Avatar
           src={
@@ -84,40 +84,38 @@ const columns = [
     dataIndex: "speciality",
     key: "speciality",
     className: " text-md text-gray-600 font-medium",
-
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
     className: " text-md text-gray-600 font-medium",
-
-  },
-  {
-    title: "Reviews",
-    dataIndex: "rating",
-    key: "rating",
-    className: "text-center text-lg font-semibold",
-    render: (rating: number) => (
-      <div>
-        {[...Array(5)].map((_, i) =>
-          i < rating ? (
-            <StarFilled key={i} className="text-yellow-400" />
-          ) : (
-            <StarOutlined key={i} className="text-gray-300" />
-          )
-        )}
-      </div>
-    ),
-  },
+  }
 ];
-
-export default function DoctorListTable() {
+interface PatientTableListProps {
+  columns?: ColumnType<IDoctor>[];
+  data?: IDoctor[];
+}
+export default function DoctorListTable({
+  columns,
+  data = doctors,
+}: PatientTableListProps) {
+  const allColumns = [...defaultColumns, ...(columns || [])].reduce(
+    (acc: ColumnType<IDoctor>[], col) => {
+      if (col.key === "key") {
+        return [col, ...acc]; // Place "Patient ID" first
+      }
+      return [...acc, col]; // Keep other columns in order
+    },
+    []
+  );;
   return (
     <Card>
-      <h1 className="pb-2 text-2xl text-gray-700 font-semibold mb-4">Doctors List</h1>
+      <h1 className="pb-2 text-2xl text-gray-700 font-semibold mb-4">
+        Doctors List
+      </h1>
       <div className="overflow-x-auto">
-        <Table columns={columns} dataSource={doctors} pagination={false} />;
+        <Table columns={allColumns} dataSource={data} pagination={false} />;
       </div>
     </Card>
   );

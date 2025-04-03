@@ -44,7 +44,7 @@ export default function Specialities() {
     <div className="my-16 ">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between mb-8 ">
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-700">
             Specialities <span className="text-blue-500">+</span>
           </h2>
           <div className="flex gap-2">
@@ -73,7 +73,7 @@ export default function Specialities() {
                     className="object-contain "
                   />
                 </div>
-                <h3 className="font-semibold text-gray-900 text-lg ">
+                <h3 className="font-semibold text-gray-700 text-lg ">
                   {specialty.title}
                 </h3>
               </div>

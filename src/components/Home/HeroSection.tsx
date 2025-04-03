@@ -13,8 +13,8 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 py-12 ">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
-            <div className="text-blue-500 text-lg">Welcome to MadiFax</div>
-            <h1 className="text-5xl font-bold text-gray-900 leading-tight">
+            <div className="text-blue-500 text-lg font-medium">Welcome to E-Healthease</div>
+            <h1 className="text-5xl font-bold text-gray-700 leading-tight">
               We Are Committed
               <br />
               To Your <span className="text-blue-500 font-bold">Helath</span>
@@ -44,7 +44,7 @@ export default function HeroSection() {
                 { title: "Popular Doctors", value: "120+" },
               ].map((stat, index) => (
                 <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                  <div className="text-2xl font-bold text-gray-900">
+                  <div className="text-2xl font-bold text-gray-700">
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-600">{stat.title}</div>

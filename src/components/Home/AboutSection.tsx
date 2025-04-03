@@ -29,10 +29,10 @@ export default function AboutSection() {
           <div className="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-medium text-blue-500">
             Virtual Healthcare
           </div>
-          <h2 className="text-4xl font-bold tracking-tight">
+          <h2 className="text-4xl font-bold tracking-tight text-gray-700">
             Your Health, Our Priority - Anytime, Anywhere
           </h2>
-          <p className="text-gray-500">
+          <p className="text-gray-600 font-normal">
             Experience healthcare reimagined with E-HEALTHEASE is online doctor
             appointment system. Connect with qualified healthcare professionals
             from the comfort of your home. Our platform offers secure video
@@ -46,7 +46,7 @@ export default function AboutSection() {
                 {row.map((service) => (
                   <div key={service} className="flex items-center gap-2">
                     <CheckCircleFilled className="h-5 w-5 text-blue-500" />
-                    <span className="text-bold">{service}</span>
+                    <span className="font-medium text-gray-600">{service}</span>
                   </div>
                 ))}
               </div>
