@@ -12,8 +12,6 @@ import {
 } from "redux-persist";
 import { rootReducer } from "../reducers";
 import { baseApi } from "../api";
-
-console.log('hey')
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddlewares) =>

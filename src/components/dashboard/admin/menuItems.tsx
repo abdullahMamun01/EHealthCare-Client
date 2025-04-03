@@ -1,9 +1,8 @@
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import {  PlusOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 import {
-  BarChart,
   Calendar,
-  ChevronDown,
+
   FileText,
   Home,
   Lock,

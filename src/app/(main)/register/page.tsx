@@ -8,7 +8,7 @@ import SignupForm from "@/components/form/SignupForm";
 export default function SignupPage() {
   return (
 
-      <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center relative">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center relative md:py-12 ">
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <Image

@@ -1,28 +1,33 @@
-'use client';
-import React, { useState } from 'react';
-import { 
-  Form, 
-  Input, 
-  Button, 
-  Select, 
-  Upload, 
-  TimePicker, 
-  Card, 
-  Row, 
-  Col, 
-  message 
-} from 'antd';
-import { 
-  UserOutlined, 
-  MailOutlined, 
-  PhoneOutlined, 
+"use client";
+import React, { useState } from "react";
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  Upload,
+  TimePicker,
+  Card,
+  Row,
+  Col,
+  message,
+} from "antd";
+import {
+  UserOutlined,
+  MailOutlined,
+  PhoneOutlined,
   UploadOutlined,
   IdcardOutlined,
   BankOutlined,
-  DollarOutlined
-} from '@ant-design/icons';
-import type { UploadProps } from 'antd';
-import 'antd/dist/reset.css';
+  DollarOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
+import type { UploadProps } from "antd";
+import "antd/dist/reset.css";
+import { useForm } from "react-hook-form";
+import InputField from "@/components/form/InputField";
+import SelectField from "@/components/form/SelectField";
+import { Contact2, Phone } from "lucide-react";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -43,25 +48,25 @@ interface DoctorFormData {
 }
 
 const specializations = [
-  'Cardiologist',
-  'Dermatologist',
-  'Neurologist',
-  'Pediatrician',
-  'Orthopedic',
-  'Gynecologist',
-  'Psychiatrist',
-  'Dentist',
-  'General Physician'
+  "Cardiologist",
+  "Dermatologist",
+  "Neurologist",
+  "Pediatrician",
+  "Orthopedic",
+  "Gynecologist",
+  "Psychiatrist",
+  "Dentist",
+  "General Physician",
 ];
 
 const daysOfWeek = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday'
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ];
 
 function AddDoctorPage() {
@@ -70,35 +75,38 @@ function AddDoctorPage() {
 
   const onFinish = (values: DoctorFormData) => {
     setLoading(true);
-    console.log('Form values:', values);
-    
+    console.log("Form values:", values);
+
     // Simulate API call
     setTimeout(() => {
-      message.success('Doctor added successfully!');
+      message.success("Doctor added successfully!");
       form.resetFields();
       setLoading(false);
     }, 1500);
   };
 
   const uploadProps: UploadProps = {
-    name: 'avatar',
-    action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+    name: "avatar",
+    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
     headers: {
-      authorization: 'authorization-text',
+      authorization: "authorization-text",
     },
     onChange(info) {
-      if (info.file.status === 'done') {
+      if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
+      } else if (info.file.status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
     },
   };
+  const { control } = useForm();
 
   return (
     <div className="min-h-screen bg-sky-50 p-8">
-      <Card  className="w-full mx-auto shadow-md">
-      <p className="text-lg text-gray-700 font-semibold my-2 border-b pb-2">Add Doctor</p>
+      <Card className="w-full mx-auto shadow-md">
+        <p className="text-lg text-gray-700 font-semibold my-2 border-b pb-2">
+          Add Doctor
+        </p>
         <Form
           form={form}
           layout="vertical"
@@ -107,140 +115,121 @@ function AddDoctorPage() {
         >
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item
+              <InputField
+                prefix={<UserOutlined />}
+                control={control}
                 name="firstName"
                 label="First Name"
-                rules={[{ required: true, message: 'Please enter first name' }]}
-              >
-                <Input prefix={<UserOutlined />} placeholder="Enter first name" size='large'/>
-              </Form.Item>
+                placeholder="Enter first name"
+                size="large"
+              />
             </Col>
-            <Col span={12}>
-              <Form.Item
+            <Col span={12} className="mb-4">
+              <InputField
+                prefix={<UserOutlined />}
+                control={control}
                 name="lastName"
                 label="Last Name"
-                rules={[{ required: true, message: 'Please enter last name' }]}
-              >
-                <Input prefix={<UserOutlined />} placeholder="Enter last name" size='large'/>
-              </Form.Item>
+                placeholder="Enter first name"
+                size="large"
+              />
             </Col>
           </Row>
 
-          <Row gutter={16}>
+          <Row gutter={16} className="mb-4">
             <Col span={12}>
-              <Form.Item
+              <InputField
+                prefix={<MailOutlined />}
+                control={control}
                 name="email"
+                type="email"
                 label="Email"
-                rules={[
-                  { required: true, message: 'Please enter email' },
-                  { type: 'email', message: 'Please enter a valid email' }
-                ]}
-              >
-                <Input prefix={<MailOutlined />} placeholder="Enter email" size='large' />
-              </Form.Item>
+                placeholder="Enter email"
+                size="large"
+              />
             </Col>
             <Col span={12}>
-              <Form.Item
-                name="phone"
-                label="Phone Number"
-                rules={[{ required: true, message: 'Please enter phone number' }]}
-              >
-                <Input prefix={<PhoneOutlined />} placeholder="Enter phone number" size='large' />
-              </Form.Item>
+              <InputField
+                prefix={<PhoneOutlined />}
+                control={control}
+                name="contactNo"
+                type="phone"
+                label="Phone"
+                placeholder="Enter phone number"
+                size="large"
+              />
             </Col>
           </Row>
-
-          <Row gutter={16}>
+          <Row gutter={16} className="mb-4">
             <Col span={12}>
-              <Form.Item
+            <InputField
+                prefix={<EyeInvisibleOutlined />}
+                placeholder="Enter Password"
+                control={control}
+                name="password"
+                type="password"
+                label="Password"
+                size="large"
+              />
+            </Col>
+            <Col span={12}>
+              <InputField
+                prefix={<EyeInvisibleOutlined  />}
+                placeholder="Enter confirm Password"
+                control={control}
+                name="confirmPassword"
+                type="password"
+                label="Confirm Password"
+                size="large"
+              />
+            </Col>
+          </Row>
+          <Row gutter={16} className="mb-4">
+            <Col span={12}>
+              <SelectField
+                control={control}
                 name="specialization"
                 label="Specialization"
-                rules={[{ required: true, message: 'Please select specialization' }]}
-              >
-                <Select placeholder="Select specialization">
-                  {specializations.map(spec => (
-                    <Option key={spec} value={spec}>{spec}</Option>
-                  ))}
-                </Select>
-              </Form.Item>
+                placeholder="Please select specialization"
+                size="large"
+                options={specializations.map((spec) => ({
+                  label: spec,
+                  value: spec,
+                }))}
+              />
             </Col>
             <Col span={12}>
-              <Form.Item
-                name="experience"
+              <InputField
+                prefix={<IdcardOutlined />}
+                placeholder="Enter years of experience"
+                control={control}
+                name="yearsOfExperience"
+                type="text"
                 label="Years of Experience"
-                rules={[{ required: true, message: 'Please enter years of experience' }]}
-              >
-                <Input prefix={<IdcardOutlined />} placeholder="Enter years of experience" />
-              </Form.Item>
+                size="large"
+              />
             </Col>
           </Row>
 
+         
           <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name="qualification"
-                label="Qualification"
-                rules={[{ required: true, message: 'Please enter qualification' }]}
-              >
-                <Input prefix={<BankOutlined />} placeholder="Enter qualification" size='large' />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="consultationFee"
-                label="Consultation Fee"
-                rules={[{ required: true, message: 'Please enter consultation fee' }]}
-              >
-                <Input prefix={<DollarOutlined />} type="number" placeholder="Enter consultation fee" size='large' />
-              </Form.Item>
-            </Col>
+            <label htmlFor="" className="mt-4">Address</label>
+            <TextArea
+              rows={4}
+              placeholder="Enter clinic address"
+              size="large"
+              className="my-4"
+            />
           </Row>
 
-          <Form.Item
-            name="clinicAddress"
-            label="Clinic Address"
-            rules={[{ required: true, message: 'Please enter clinic address' }]}
-          >
-            <TextArea rows={4} placeholder="Enter clinic address"  size='large'/>
-          </Form.Item>
-
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name="availableDays"
-                label="Available Days"
-                rules={[{ required: true, message: 'Please select available days' }]}
-              >
-                <Select mode="multiple" placeholder="Select available days" size='large'>
-                  {daysOfWeek.map(day => (
-                    <Option key={day} value={day}>{day}</Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="workingHours"
-                label="Working Hours"
-                rules={[{ required: true, message: 'Please select working hours' }]}
-              >
-                <TimePicker.RangePicker className="w-full"  size='large'/>
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Form.Item
-            name="about"
-            label="About"
-            rules={[{ required: true, message: 'Please enter about information' }]}
-          >
-            <TextArea rows={4} placeholder="Enter about information" size='large' />
-          </Form.Item>
+       
 
           <Form.Item
             name="avatar"
             label="Profile Picture"
-            rules={[{ required: true, message: 'Please upload profile picture' }]}
+            rules={[
+              { required: true, message: "Please upload profile picture" },
+            ]}
           >
             <Upload {...uploadProps} listType="picture">
               <Button icon={<UploadOutlined />}>Click to Upload</Button>
@@ -248,7 +237,12 @@ function AddDoctorPage() {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} className="w-full">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              className="w-full"
+            >
               Add Doctor
             </Button>
           </Form.Item>

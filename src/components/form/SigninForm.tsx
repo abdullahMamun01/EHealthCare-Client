@@ -13,6 +13,7 @@ import SubmitButton from "../SubmitButton";
 import { useToast } from "@/provider/ToastProvider";
 import { setUser } from "@/redux/slices/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 
 interface ILogin {
   email: string;
@@ -20,9 +21,10 @@ interface ILogin {
 }
 
 export default function SigninForm() {
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
+  const router = useRouter();
   const dispatch = useAppDispatch();
-  const { control, formState, handleSubmit, setError } = useForm<ILogin>({
+  const { control, handleSubmit, setError } = useForm<ILogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "admin@gmail.com",
@@ -40,6 +42,9 @@ export default function SigninForm() {
           token: res.token,
         })
       );
+      const role = res.user.role;
+      if (role === "ADMIN") router.push("/dashboard");
+      else router.push("/");
     } catch (error) {
       const err = error as any;
       console.log(err.data.message, "error");
@@ -47,6 +52,7 @@ export default function SigninForm() {
       errorToast(err.data.message);
     }
   };
+  console.log(isLoading, "hey loading");
   return (
     <div className="grid gap-2">
       <form onSubmit={handleSubmit(onSubmit)}>

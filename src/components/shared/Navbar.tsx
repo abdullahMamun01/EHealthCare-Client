@@ -1,10 +1,16 @@
+"use client";
 import { Button } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Logo from "../../../public/assets/logo.png";
 import { User } from "lucide-react";
+import AvatarDropDown from "../user/AvatarDropDown";
+import { useToken } from "@/redux/slices/authSlice";
+import { useAppSelector } from "@/redux/hooks";
 export default function Navbar() {
+  const token = useAppSelector(useToken);
+
   return (
     <nav className="border-b sticky top-0 z-50 bg-white py-2">
       <div className="max-w-7xl mx-auto px-4 py-4">
@@ -55,17 +61,27 @@ export default function Navbar() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Button
-              variant="outlined"
-              color="blue"
-              className="flex items-center justify-center rounded-full bg-[#15558d] px-6 py-2 font-medium text-gray-700 transition-colors hover:bg-[#124a7c]"
-            >
-              <span className="mr-1">Register</span>
-            </Button>
-            <Button className="flex items-center justify-center rounded-full bg-blue-500 px-6 py-2 font-medium text-white transition-colors hover:bg-[#0fb3e8]">
-              <User className="h-4 w-4" />
-              <span>Login</span>
-            </Button>
+            {token ? (
+              <AvatarDropDown />
+            ) : (
+              <>
+                <Link href="/register">
+                  <Button
+                    variant="outlined"
+                    color="blue"
+                    className="flex items-center justify-center rounded-full bg-[#15558d] px-6 py-2 font-medium text-gray-700 transition-colors hover:bg-[#124a7c]"
+                  >
+                    <span className="mr-1">Register</span>
+                  </Button>
+                </Link>
+                <Link href="/login">
+                  <Button className="flex items-center justify-center rounded-full bg-blue-500 px-6 py-2 font-medium text-white transition-colors hover:bg-[#0fb3e8]">
+                    <User className="h-4 w-4" />
+                    <span>Login</span>
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

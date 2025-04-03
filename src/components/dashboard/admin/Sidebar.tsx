@@ -8,17 +8,13 @@ import { useRouter } from "next/navigation";
 export default function Sidebar() {
   const router = useRouter()
   const onClick: MenuProps["onClick"] = (e) => {
-    const selectedItem = menuItems.find((item) => item.key === e.key);
-    console.log(selectedItem , 'hello');
-    if(selectedItem?.children){
-      selectedItem.children.forEach((child) => {
-        if (child?.route) {
-          router.push(child.route);
-        }
-      })
-    }
-    else if (selectedItem?.route) {
-      router.push(selectedItem.route);
+    const selectedItem = menuItems?.find((item) => e.keyPath.includes(item.key as string));
+    if (!selectedItem) return;
+    const targetRoute =
+      selectedItem.children?.find((child) => child.key === e.key)?.route || selectedItem.route;
+  
+    if (targetRoute) {
+      router.push(targetRoute);
     }
   };
 

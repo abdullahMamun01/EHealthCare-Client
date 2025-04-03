@@ -14,9 +14,6 @@ type TRegisterBody = {
   password: string;
 };
 
-
-
-
 const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation<{ user: IUser; token: string }, TLoginBody>({

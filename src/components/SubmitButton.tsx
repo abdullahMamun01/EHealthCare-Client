@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24, color: "white" }} spin />;
 interface SubmitButtonProps {
   loading?: boolean;
   buttonText?: string;
@@ -23,7 +25,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
       disabled={disabled || loading}
       className={className}
     >
-      {loading && <Spin className="!text-white"  size="default"  />}
+      {loading && <Spin indicator={antIcon} size="small"  />}
       {loading ? loadingText : buttonText}
     </Button>
   );
