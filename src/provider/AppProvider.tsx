@@ -11,10 +11,12 @@ export default function AppProvider({
   children: React.ReactNode;
 }) {
   return (
+    <AntProvider>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <AntProvider>{children}</AntProvider>
+        {children}
       </PersistGate>
     </Provider>
+    </AntProvider>
   );
 }

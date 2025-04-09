@@ -1,16 +1,11 @@
 "use client";
+import PatientActionButtons from "@/components/dashboard/patient/PatientActionButtons";
 import PatientTableList from "@/components/dashboard/patient/PatientTableList";
-import { Avatar, Image } from "antd";
+
+import { IPatient } from "@/types/patient";
+
 import React from "react";
 
-export interface Patient {
-  key: string;
-  name: string;
-  age: number;
-  email: string;
-  phone?: string;
-  image: string;
-}
 const patientColumn = [
   {
     title: "Patient ID",
@@ -32,14 +27,21 @@ const patientColumn = [
     key: "phone",
     className: " text-md text-gray-600 font-medium",
     render: (phone: string) => <span>{phone ? phone : "N/A"}</span>,
-  }
+  },
+  {
+    title: "Action",
+    dataIndex: "",
+    key: "x",
+    className: " text-md text-gray-600 font-medium",
+    render: (record: IPatient) => <PatientActionButtons patient={record} />,
+  },
 ];
-export default function Patient() {
+export default function PatientPage() {
   return (
-    <div>
-     <div className="px-5 mt-4">
-     <PatientTableList columns={patientColumn} />
-     </div>
+    <div className=" ">
+      <div className="px-5 mt-4">
+        <PatientTableList columns={patientColumn} />
+      </div>
     </div>
   );
 }

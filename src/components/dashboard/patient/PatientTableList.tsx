@@ -1,56 +1,36 @@
 "use client";
+import { usePatientsQuery } from "@/redux/api/patientApi";
 import { Table, Avatar, Card } from "antd";
 import { ColumnType } from "antd/es/table";
 import Image from "next/image";
-
-export interface Patient {
-  key: string;
+interface PatientRow {
+  key: number;
   name: string;
-  age: number;
+  age: string | number;
   email: string;
-  phone?: string;
-  image: string;
+  phone: string;
+  country: string;
+  photo: string;
 }
 
-const patientData: Patient[] = [
-  {
-    key: "1",
-    name: "John Doe",
-    age: 30,
-    email: "john.doe@example.com",
-    phone: "123-456-7890",
-    image: "/placeholder.svg",
-  },
-  {
-    key: "2",
-    name: "Jane Smith",
-    age: 25,
-    email: "jane.smith@example.com",
-    phone: undefined,
-    image: "/placeholder.svg",
-  },
-  {
-    key: "3",
-    name: "Michael Johnson",
-    age: 40,
-    email: "michael.johnson@example.com",
-    phone: "987-654-3210",
-    image: "/placeholder.svg",
-  },
-];
-
-const defaultColumns = [
+const defaultColumns : ColumnType<PatientRow>[] = [
   {
     title: "Patient Name",
     dataIndex: "name",
     key: "name",
     className: " text-md text-gray-600 font-medium",
-    render: (_: unknown, record: Patient) => (
+    render: (_: unknown, record : PatientRow) => (
       <div className="flex items-center">
         <Avatar
           src={
             <Image
-              src={record.image}
+              src={
+                record?.photo ||
+                `https://avatar.iran.liara.run/username?username=${record.name.slice(
+                  0,
+                  1
+                )}`
+              }
               alt={record.name}
               width={40}
               height={40}
@@ -68,6 +48,12 @@ const defaultColumns = [
     className: " text-md text-gray-600 font-medium",
   },
   {
+    title: "Country",
+    dataIndex: "country",
+    key: "country",
+    className: " text-md text-gray-600 font-medium",
+  },
+  {
     title: "Email",
     dataIndex: "email",
     key: "email",
@@ -76,33 +62,53 @@ const defaultColumns = [
 ];
 
 interface PatientTableListProps {
-  columns?: ColumnType<Patient>[];
-  data?: Patient[];
+  columns?:  ColumnType<PatientRow>[];
 }
 
-const PatientTableList = ({
-  columns,
-  data = patientData,
-}: PatientTableListProps) => {
+const PatientTableList = ({ columns }: PatientTableListProps) => {
   const allColumns = [...defaultColumns, ...(columns || [])].reduce(
-    (acc: ColumnType<Patient>[], col) => {
+    (acc: ColumnType<PatientRow>[], col) => {
       if (col.key === "key") {
         return [col, ...acc]; // Place "Patient ID" first
       }
       return [...acc, col]; // Keep other columns in order
     },
     []
-  );
+  ) as ColumnType<PatientRow>[];
+
+
+  const { data: patients, isLoading, isError } = usePatientsQuery();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
+  const patientsData =
+    patients?.data?.map((patient,idx) => ({
+      key: idx,
+      id: patient.id,
+      name: patient.name,
+      age: patient?.age || "N/A",
+      email: patient.email,
+      phone: patient.contactNo || "N/A",
+      country: patient.country || 'N/A',
+      photo:
+        patient.photo ||
+        `https://avatar.iran.liara.run/username?username=${patient.name.slice(
+          0,
+          1
+        )}`,
+    })) || [];
+
   return (
     <Card
-      title={
-        <h1 className="pb-2 text-2xl text-gray-700 font-semibold my-4">
-          Patient List
-        </h1>
-      }
+      title={<h2 className="text-lg font-semibold">Patient List</h2>}
+      className="rounded-none  "
+      bodyStyle={{ padding: 0 }}
     >
-      <div className="bg-white rounded-lg shadow-md overflow-x-auto">
-        <Table columns={allColumns} dataSource={data} />
+      <div className="bg-white  overflow-x-auto">
+        <Table columns={allColumns} dataSource={patientsData} />
       </div>
     </Card>
   );

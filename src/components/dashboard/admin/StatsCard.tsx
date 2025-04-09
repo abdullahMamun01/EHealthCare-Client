@@ -11,7 +11,7 @@ interface StatCardProps {
 
 export function StatCard({ title, value, icon, color, progress, progressColor }: StatCardProps) {
   return (
-    <div className="rounded-lg border bg-white p-6 shadow-sm">
+    <div className="rounded-md  bg-white p-6 ">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-gray-600 font-semibold">{title}</p>

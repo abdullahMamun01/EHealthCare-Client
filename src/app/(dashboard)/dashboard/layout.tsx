@@ -1,16 +1,23 @@
 import Sidebar from "@/components/dashboard/admin/Sidebar";
 import React from "react";
 import DashboardHeader from "./DashboardHeader";
+import CustomBreadcrumb from "@/components/ui/CustomBreadcrumb";
+import { Layout } from "antd";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-12 relative">
+   
+      <Layout style={{ minHeight: "100vh" }}>
+        <div >
+          <Sidebar />
+        </div>
 
-        <Sidebar />
+        <div className="w-full">
+          <DashboardHeader />
+          <CustomBreadcrumb />
+          {children}
+        </div>
+      </Layout>
 
-      <div className="col-span-10">
-        <DashboardHeader/>
-        {children}</div>
-    </div>
   );
 }

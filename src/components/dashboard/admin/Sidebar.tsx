@@ -1,60 +1,199 @@
-"use client";
-import { Menu, MenuProps } from "antd";
+'use client';
+import React, { useState } from 'react';
+import { Layout, Menu } from 'antd';
+import {
+  DashboardOutlined,
+  CalendarOutlined,
+  MedicineBoxOutlined,
+  TeamOutlined,
+  UserOutlined,
+  StarOutlined,
+  DollarOutlined,
+  SettingOutlined,
+  FileTextOutlined,
+  UserSwitchOutlined,
+  LockOutlined,
+  WarningOutlined,
+  FileOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
+import Logo from '@/components/logo/Logo';
+import { useRouter } from 'next/navigation';
 
-import React, { useState } from "react";
-import menuItems from "./menuItems";
-import { useRouter } from "next/navigation";
 
-export default function Sidebar() {
-  const router = useRouter()
-  const onClick: MenuProps["onClick"] = (e) => {
-    const selectedItem = menuItems?.find((item) => e.keyPath.includes(item.key as string));
-    if (!selectedItem) return;
-    const targetRoute =
-      selectedItem.children?.find((child) => child.key === e.key)?.route || selectedItem.route;
-  
-    if (targetRoute) {
-      router.push(targetRoute);
-    }
-  };
+const { Sider } = Layout;
 
+function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
 
+  const mainMenuItems = [
+    {
+      key: 'dashboard',
+      icon: <DashboardOutlined />,
+      label: 'Dashboard',
+    },
+    {
+      key: 'appointments',
+      icon: <CalendarOutlined />,
+      label: 'Appointments',
+    },
+    {
+      key: 'specialities',
+      icon: <MedicineBoxOutlined />,
+      label: 'Specialities',
+    },
+    {
+      key: 'doctors',
+      icon: <TeamOutlined />,
+      label: 'Doctors',
+    },
+    {
+      key: 'patients',
+      icon: <UserOutlined />,
+      label: 'Patients',
+    },
+    {
+      key: 'reviews',
+      icon: <StarOutlined />,
+      label: 'Reviews',
+    },
+    {
+      key: 'transactions',
+      icon: <DollarOutlined />,
+      label: 'Transactions',
+    },
+    {
+      key: 'settings',
+      icon: <SettingOutlined />,
+      label: 'Settings',
+    },
+    {
+      key: 'reports',
+      icon: <FileTextOutlined />,
+      label: 'Reports',
+      children: [
+        {
+          key: 'report1',
+          label: 'Income Report',
+        },
+        {
+          key: 'report2',
+          label: 'Invoice Report',
+        },
+      ],
+    },
+  ];
+
+  const pageMenuItems = [
+    {
+      key: 'profile',
+      icon: <UserSwitchOutlined />,
+      label: 'Profile',
+    },
+    {
+      key: 'authentication',
+      icon: <LockOutlined />,
+      label: 'Authentication',
+      children: [
+        {
+          key: 'login',
+          label: 'Login',
+        },
+        {
+          key: 'register',
+          label: 'Register',
+        },
+      ],
+    },
+    {
+      key: 'error-pages',
+      icon: <WarningOutlined />,
+      label: 'Error Pages',
+      children: [
+        {
+          key: '404',
+          label: '404 Error',
+        },
+        {
+          key: '500',
+          label: '500 Error',
+        },
+      ],
+    },
+    {
+      key: 'blank-page',
+      icon: <FileOutlined />,
+      label: 'Blank Page',
+    },
+  ];
+  const router = useRouter()
   return (
-    <div className={`${collapsed ? "col-span-1" : "col-span-2"} sticky top-0 h-screen bg-sky-700`}>
-      <div className="flex h-16 items-center justify-between px-4 py-5 bg-sky-700">
-        <div className="flex items-center">
-          <span className="text-2xl font-bold text-blue-100 pl-7">E-HEALTHEASE</span>
+   
+      <Sider 
+        trigger={null} 
+        collapsible 
+        collapsed={collapsed}
+        style={{
+          background: '#1B5A90',
+          position: 'sticky',
+          top: 0
+        }}
+      >
+        <div className="h-16 flex items-center justify-between px-4 border-b border-[#3A5795]">
+          {!collapsed && (
+            <span className="text-2xl font-bold text-white">
+              <Logo className='w-[150px] h-20 object-contain'/>
+            </span>
+          )}
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="text-white hover:text-gray-300"
+          >
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </button>
         </div>
-        {/* <Button
-          type="primary"
-          onClick={toggleCollapsed}
-          style={{ marginBottom: 1 }}
-          className="bg-sky-600 "
-        >
-          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button> */}
-      </div>
+        <div className="py-4">
+          <div className="px-4 mb-2">
+            {!collapsed && (
+              <span className="text-[#8699BD] text-xs font-medium uppercase">
+                Main
+              </span>
+            )}
+          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={['dashboard']}
+            style={{
+              background: 'transparent',
+            }}
+            items={mainMenuItems}
+            onClick={({ key }) => router.push(`/dashboard/${key}`)}
+          />
+        </div>
+        <div className="py-4">
+          <div className="px-4 mb-2">
+            {!collapsed && (
+              <span className="text-[#8699BD] text-xs font-medium uppercase">
+                Pages
+              </span>
+            )}
+          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            style={{
+              background: 'transparent',
+            }}
+            items={pageMenuItems}
+          />
+        </div>
+      </Sider>
 
-      <Menu
-        onClick={onClick}
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        mode="inline"
-        inlineCollapsed={collapsed}
-        items={
-          menuItems.map((item) => ({
-            ...item,
-            className: "!text-gray-200 text-lg",
-          })) as MenuProps["items"]
-        }
-        className="p-4 bg-sky-700 "
-      />
-    </div>
+
   );
 }
+
+export default Sidebar;

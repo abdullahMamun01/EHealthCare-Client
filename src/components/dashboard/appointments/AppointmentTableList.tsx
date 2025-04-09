@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Table, Avatar, Tag, Button, Card } from "antd";
 import Image from "next/image";
 import { EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -62,21 +62,18 @@ const appointmentColumns = [
     dataIndex: "speciality",
     key: "speciality",
     className: " text-md text-gray-600 font-medium",
-
   },
   {
     title: "Patient Name",
     dataIndex: "patientName",
     key: "patientName",
     className: " text-md text-gray-600 font-medium",
-
   },
   {
     title: "Appointment Time",
     dataIndex: "appointmentTime",
     key: "appointmentTime",
     className: " text-md text-gray-600 font-medium",
-
   },
   {
     title: "Status",
@@ -109,10 +106,11 @@ const appointmentColumns = [
 
 const AppointmentTableList = () => {
   return (
-    <Card>
-      <h1 className="pb-2 text-2xl text-gray-700 font-semibold mb-4">
-        Appointment List
-      </h1>
+    <Card
+      title={<h2 className="text-lg font-semibold">Appointment List</h2>}
+      className="rounded-none"
+      bodyStyle={{ padding: 0 }}
+    >
       <div className="overflow-x-auto">
         <Table columns={appointmentColumns} dataSource={appointmentData} />;
       </div>

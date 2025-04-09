@@ -10,7 +10,7 @@ import AppointmentTableList from "@/components/dashboard/appointments/Appointmen
 
 export default function AdminDashboardPage() {
   return (
-    <div className="p-4 px-8">
+    <div className="p-4 px-8 bg-[#F1F5F6]">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-700  uppercase">
           Welcome Admin!
@@ -55,12 +55,12 @@ export default function AdminDashboardPage() {
         />
       </div>
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="col-span-1 my-4 border border-gray-200">
+        <Card className="col-span-1 my-4 rounded-none">
           <h2 className="text-gray-700 text-2xl font-semibold">Revenue</h2>
           <RevenueChart />
         </Card>
 
-        <Card className="col-span-1 my-4 border border-gray-200">
+        <Card className="col-span-1 my-4  rounded-none">
           <h3>Status</h3>
           <div className="h-[300px]">
             <AppointmentStatusChart />
@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
         </div>
       </div>
 
-      <div>
+      <div className="mt-4">
         <AppointmentTableList/>
       </div>
     </div>

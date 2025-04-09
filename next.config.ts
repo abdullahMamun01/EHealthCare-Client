@@ -12,6 +12,20 @@ const nextConfig: NextConfig = {
         hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
    
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+   
+      },
+      {
+        protocol: 'http',
+        hostname: 'res.cloudinary.com',
+   
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatar.iran.liara.run',
+      }
     ]
   },
 };

@@ -2,60 +2,8 @@
 import Image from "next/image";
 import { Avatar, Card, Table } from "antd";
 import { ColumnType } from "antd/es/table";
-interface IDoctor {
-  key: string;
-  name: string;
-  speciality: string;
-  email: string;
-  phone?: string;
-  rating: number;
-  image: string;
-}
-const doctors = [
-  {
-    key: "1",
-    name: "Dr. Ruby Perrin",
-    speciality: "Dental",
-    email: "ruby.perrin@example.com",
-    phone: "+1 234 567 890",
-    rating: 4,
-    image: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    key: "2",
-    name: "Dr. Darren Elder",
-    speciality: "Dental",
-    email: "darren.elder@example.com",
-    rating: 4,
-    image: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    key: "3",
-    name: "Dr. Deborah Angel",
-    speciality: "Cardiology",
-    email: "deborah.angel@example.com",
-    phone: "+1 987 654 321",
-    rating: 4,
-    image: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    key: "4",
-    name: "Dr. Sofia Brient",
-    speciality: "Urology",
-    email: "sofia.brient@example.com",
-    rating: 4,
-    image: "/placeholder.svg?height=40&width=40",
-  },
-  {
-    key: "5",
-    name: "Dr. Marvin Campbell",
-    speciality: "Orthopaedics",
-    email: "marvin.campbell@example.com",
-    phone: "+1 555 666 777",
-    rating: 4,
-    image: "/placeholder.svg?height=40&width=40",
-  },
-];
+import { useGetDoctorsQuery } from "@/redux/api/doctorApi";
+import { IDoctor } from "@/types/doctor";
 
 const defaultColumns = [
   {
@@ -68,7 +16,13 @@ const defaultColumns = [
         <Avatar
           src={
             <Image
-              src={record.image}
+              src={
+                record?.photo ||
+                `https://avatar.iran.liara.run/username?username=${record.name.slice(
+                  0,
+                  1
+                )}`
+              }
               alt={record.name}
               width={40}
               height={40}
@@ -80,42 +34,60 @@ const defaultColumns = [
     ),
   },
   {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+    className: " text-md text-gray-600 font-medium",
+  },
+  {
     title: "Speciality",
     dataIndex: "speciality",
     key: "speciality",
     className: " text-md text-gray-600 font-medium",
   },
-  {
-    title: "Email",
-    dataIndex: "email",
-    key: "email",
-    className: " text-md text-gray-600 font-medium",
-  }
 ];
 interface PatientTableListProps {
   columns?: ColumnType<IDoctor>[];
-  data?: IDoctor[];
 }
-export default function DoctorListTable({
-  columns,
-  data = doctors,
-}: PatientTableListProps) {
+export default function DoctorListTable({ columns }: PatientTableListProps) {
   const allColumns = [...defaultColumns, ...(columns || [])].reduce(
     (acc: ColumnType<IDoctor>[], col) => {
       if (col.key === "key") {
-        return [col, ...acc]; // Place "Patient ID" first
+        return [col, ...acc]; // Place "Doctor ID" first
       }
+
       return [...acc, col]; // Keep other columns in order
     },
     []
-  );;
+  );
+  const { data, isLoading, isError } = useGetDoctorsQuery();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error</div>;
+  }
+
+  const transformedData = data?.data?.map((doc, idx) => ({
+    ...doc,
+    key: idx + 1,
+    speciality: doc?.doctorSpecielites[0]?.specialites?.name || "N/A",
+    email: doc.email,
+    phone: doc.contactNo,
+  }));
+
   return (
-    <Card>
-      <h1 className="pb-2 text-2xl text-gray-700 font-semibold mb-4">
-        Doctors List
-      </h1>
+    <Card
+      title={<h2 className="text-lg font-semibold">Doctors List</h2>}
+      className="rounded-none"
+      bodyStyle={{ padding: 0 }}
+    >
       <div className="overflow-x-auto">
-        <Table columns={allColumns} dataSource={data} pagination={false} />;
+        <Table
+          columns={allColumns}
+          dataSource={transformedData?.slice(0,6)}
+          pagination={false}
+        />
       </div>
     </Card>
   );
