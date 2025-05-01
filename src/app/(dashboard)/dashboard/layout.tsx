@@ -12,7 +12,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
           <Sidebar />
         </div>
 
-        <div className="w-full">
+        <div className="w-full bg-[#F3F4F5]">
           <DashboardHeader />
           <CustomBreadcrumb />
           {children}
