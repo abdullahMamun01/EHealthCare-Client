@@ -18,7 +18,7 @@ const defaultColumns : ColumnType<PatientRow>[] = [
     title: "Patient Name",
     dataIndex: "name",
     key: "name",
-    className: " text-md text-gray-600 font-medium",
+    className: " text-md text-gray-700 font-medium",
     render: (_: unknown, record : PatientRow) => (
       <div className="flex items-center">
         <Avatar
@@ -45,19 +45,19 @@ const defaultColumns : ColumnType<PatientRow>[] = [
     title: "Age",
     dataIndex: "age",
     key: "age",
-    className: " text-md text-gray-600 font-medium",
+    className: " text-md text-gray-800 font-normal",
   },
   {
     title: "Country",
     dataIndex: "country",
     key: "country",
-    className: " text-md text-gray-600 font-medium",
+    className: " text-md text-gray-800 font-normal",
   },
   {
     title: "Email",
     dataIndex: "email",
     key: "email",
-    className: " text-md text-gray-600 font-medium",
+    className: " text-md text-gray-800 font-normal",
   },
 ];
 
@@ -103,12 +103,12 @@ const PatientTableList = ({ columns }: PatientTableListProps) => {
 
   return (
     <Card
-      title={<h2 className="text-lg font-semibold">Patient List</h2>}
+      title={<h2 className="text-xl font-semibold pb-2 pt-4"><span className="text-sky-600">Patient</span> List</h2>}
       className="rounded-none  "
       bodyStyle={{ padding: 0 }}
     >
-      <div className="bg-white  overflow-x-auto">
-        <Table columns={allColumns} dataSource={patientsData} />
+      <div className="bg-[#FBFFFF]  overflow-x-auto">
+        <Table columns={allColumns} dataSource={patientsData} className="custom-ant-table px-4" />
       </div>
     </Card>
   );

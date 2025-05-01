@@ -5,27 +5,27 @@ import React, { useState } from "react";
 import { EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Trash2 } from "lucide-react";
 
-import { IPatient } from "@/types/patient";
-
 import { Space } from "antd";
 import Modal from "@/components/Modal/Modal";
-import { useDeletePatientMutation } from "@/redux/api/patientApi";
+
 import { useToast } from "@/provider/ToastProvider";
 import Link from "next/link";
+import { useDeleteDoctorMutation } from "@/redux/api/doctorApi";
+import { IDoctor } from "@/types/doctor";
 
 type Props = {
-  patient: IPatient;
+  doctor: IDoctor;
 };
 
-const PatientActionButtons = ({ patient }: Props) => {
-  const [deletePatient, { isLoading }] = useDeletePatientMutation();
+const DoctorActionButtons = ({ doctor }: Props) => {
+  const [deleteDoctor, { isLoading }] = useDeleteDoctorMutation();
 
   const [open, setOpen] = useState(false);
   const { successToast, errorToast } = useToast();
 
   const handleDelete = async () => {
     try {
-      const res = await deletePatient(patient.id).unwrap();
+      const res = await deleteDoctor(doctor.id).unwrap();
       console.log(res, "res");
       successToast("Patient deleted successfully");
       setOpen(false);
@@ -39,10 +39,9 @@ const PatientActionButtons = ({ patient }: Props) => {
 
   return (
     <Space>
-      <Link href={`/patients/${patient.id}`}>
+      <Link href={`/dashboard/doctors/${doctor.id}/edit`}>
         <EditOutlined
           className="text-green-500 cursor-pointer"
-          onClick={handleDelete}
         />
       </Link>
       <EyeOutlined className="text-blue-500 cursor-pointer" />
@@ -53,9 +52,9 @@ const PatientActionButtons = ({ patient }: Props) => {
           <span>
             Are you sure you want to delete this{" "}
             <span className="text-blue-500 text-lg px-1 font-medium">
-              {patient.name}
+              {doctor.name}
             </span>{" "}
-            patient?
+            doctor?
           </span>
         }
         title="Delete Patient"
@@ -70,4 +69,4 @@ const PatientActionButtons = ({ patient }: Props) => {
   );
 };
 
-export default PatientActionButtons;
+export default DoctorActionButtons;

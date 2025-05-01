@@ -2,14 +2,14 @@ import { ConfigProvider } from "antd";
 import { ToastProvider } from "./ToastProvider";
 // import zhCN from "antd/es/locale/zh_CN";
 import "antd/dist/reset.css";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+
 export default function AntProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <AntdRegistry>
+ 
       <ConfigProvider
         theme={{
           components: {
@@ -29,6 +29,6 @@ export default function AntProvider({
       >
         <ToastProvider>{children}</ToastProvider>
       </ConfigProvider>
-    </AntdRegistry>
+ 
   );
 }

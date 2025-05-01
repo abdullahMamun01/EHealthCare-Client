@@ -8,17 +8,18 @@ import React from "react";
 
 const patientColumn = [
   {
-    title: "Patient ID",
+    title: "ID",
     dataIndex: "key",
     key: "key",
-    className: " text-md text-gray-600 font-medium",
+    // className: " text-md text-gray-600 font-medium",
+    render: (text:string) => <span className="text-sky-500 font-medium">{text}</span>
   },
 
   {
     title: "Address",
     dataIndex: "address",
     key: "address",
-    className: " text-md text-gray-600 font-medium",
+    className: " text-md",
     render: (address: string) => <span>{address ? address : "N/A"}</span>,
   },
   {
@@ -38,7 +39,7 @@ const patientColumn = [
 ];
 export default function PatientPage() {
   return (
-    <div className=" ">
+    <div className="">
       <div className="px-5 mt-4">
         <PatientTableList columns={patientColumn} />
       </div>

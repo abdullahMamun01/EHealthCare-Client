@@ -1,9 +1,12 @@
 "use client";
 import Image from "next/image";
-import { Avatar, Card, Table } from "antd";
+import { Avatar, Button, Card, Table } from "antd";
 import { ColumnType } from "antd/es/table";
-import { useGetDoctorsQuery } from "@/redux/api/doctorApi";
+
 import { IDoctor } from "@/types/doctor";
+import { Plus } from "lucide-react";
+import Link from "next/link";
+import { useDoctorsQuery } from "@/redux/api/doctorApi";
 
 const defaultColumns = [
   {
@@ -37,13 +40,13 @@ const defaultColumns = [
     title: "Email",
     dataIndex: "email",
     key: "email",
-    className: " text-md text-gray-600 font-medium",
+    className: "  text-sky-600 font-normal",
   },
   {
     title: "Speciality",
     dataIndex: "speciality",
     key: "speciality",
-    className: " text-md text-gray-600 font-medium",
+    className: " font-normal",
   },
 ];
 interface PatientTableListProps {
@@ -60,7 +63,7 @@ export default function DoctorListTable({ columns }: PatientTableListProps) {
     },
     []
   );
-  const { data, isLoading, isError } = useGetDoctorsQuery();
+  const { data, isLoading, isError } = useDoctorsQuery();
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -78,14 +81,29 @@ export default function DoctorListTable({ columns }: PatientTableListProps) {
 
   return (
     <Card
-      title={<h2 className="text-lg font-semibold">Doctors List</h2>}
+      title={
+        <div className="flex justify-between items-center pt-5 pb-2">
+          <h2 className="text-lg font-semibold pt-5 pb-2 rounded-lg">
+            <span className="text-sky-600">Doctors</span> List
+          </h2>
+          <Link href="/dashboard/doctors/add">
+            <Button
+              className="bg-blue-500 text-gray-50"
+              icon={<Plus className="w-4 h-4 " />}
+            >
+              {" "}
+              Add Doctor
+            </Button>
+          </Link>
+        </div>
+      }
       className="rounded-none"
       bodyStyle={{ padding: 0 }}
     >
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto px-5">
         <Table
           columns={allColumns}
-          dataSource={transformedData?.slice(0,6)}
+          dataSource={transformedData?.slice(0, 6)}
           pagination={false}
         />
       </div>

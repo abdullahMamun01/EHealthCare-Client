@@ -23,18 +23,28 @@ function AddDoctorPage() {
   const { successToast, errorToast } = useToast();
   const onSubmit = async (data: TDoctorRegister) => {
     const formData = new FormData();
-    const name = data.firstName + " " + data.lastName;
-    formData.append("name", name);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-    formData.append("gender", data.gender);
-    formData.append("contactNo", data.contactNo);
-    formData.append("address", data.address);
-    formData.append("file", data.avatar[0]);
-    formData.append("yearsOfExperience", data.yearsOfExperience.toString());
-    formData.append("country", data.country);
-    formData.append("licenseNo", data.licenseNo);
-    formData.append("file", data.avatar?.[0]?.originFileObj);
+    const transformedData = {
+      name: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      password: data.password,
+      gender: data.gender,
+      contactNo: data.contactNo,
+      address: data.address,
+      yearsOfExperience: data.yearsOfExperience.toString(),
+      country: data.country,
+      licenseNo: data.licenseNo,
+    };
+  
+    // Append non-file fields
+    Object.entries(transformedData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+  
+    // Append file
+    const avatarFile = data.avatar?.[0]?.originFileObj || data.avatar?.[0];
+    if (avatarFile) {
+      formData.append("file", avatarFile);
+    }
 
     try {
       await creteDoctor(formData).unwrap();
@@ -47,7 +57,7 @@ function AddDoctorPage() {
   };
   return (
     <div className="min-h-screen bg-sky-50 p-8">
-      <Card className="w-full mx-auto shadow-md">
+      <Card className="w-full mx-auto  px-4">
         <p className="text-lg text-gray-700 font-semibold my-2 border-b pb-2">
           Add Doctor
         </p>
