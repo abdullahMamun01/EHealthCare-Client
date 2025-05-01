@@ -6,23 +6,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.footer{
+.footer {
   background-image: url("../../public//assets/footer-bg.webp");
   background-position: right top;
   background-repeat: no-repeat;
-
 }
 
-.hero-section{
-  background-image: url("../../public/assets//hexagen-group-1.webp") ;
+.hero-section {
+  background-image: url("../../public/assets//hexagen-group-1.webp");
   background-position: left top;
   background-repeat: no-repeat;
 }
 
 .ant-menu-item-selected {
-  background-color: oklch(0.588 0.158 241.966) !important; /* Add your preferred color */
+  background-color: oklch(
+    0.588 0.158 241.966
+  ) !important; /* Add your preferred color */
   color: #fff !important; /* Adjust text color */
 }
+.ant-table-thead > tr > th {
+  font-weight: 500 !important;
+  background: transparent !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+}
+
 
 /* .second-bg{
   background-image: url("../../public/assets/hero-bg-2.png");
