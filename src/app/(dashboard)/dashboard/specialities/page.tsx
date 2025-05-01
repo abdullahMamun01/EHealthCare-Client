@@ -3,6 +3,7 @@ import SpecialtiesTable from "./_components/SpecialtiesTable";
 import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { Breadcrumb, Button } from "antd";
+import SpecialityModal from "@/components/dashboard/speciality/SpecialityModal";
 
 export default function page() {
   return (
@@ -17,7 +18,8 @@ export default function page() {
               items={[{ title: "Dashboard" }, { title: "Specialities" }]}
             />
           </div>
-          <Button type="primary">Add</Button>
+          {/* <Button type="primary">Add</Button> */}
+          <SpecialityModal />
         </div>
         <SpecialtiesTable />
       </Content>
