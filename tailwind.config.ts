@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        
+        'doccure-darkBlue': '#1D3A70', // Use your actual hex/rgb/oklch color here
       },
     },
   },
