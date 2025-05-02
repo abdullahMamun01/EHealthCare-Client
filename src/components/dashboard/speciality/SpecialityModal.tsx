@@ -2,27 +2,26 @@
 
 import SpecialityForm from "@/components/form/SpecialityForm";
 import Modal from "@/components/Modal/Modal";
-import Toast from "@/components/ui/Totast";
+
 import { useToast } from "@/provider/ToastProvider";
 import { useCreateSpecialityMutation } from "@/redux/api/speciality";
 import { Button } from "antd";
 import { Plus } from "lucide-react";
 import React, { useRef, useState } from "react";
-import { z } from "zod";
-
 export default function SpecialityModal() {
   const [createSpeciality, { isLoading }] = useCreateSpecialityMutation();
   const [open, setOpen] = useState(false);
   const formRef = useRef<{ submitForm: () => void }>(null);
   const { successToast, errorToast } = useToast();
   const onSubmit = async (data: any) => {
-    console.log(data.icon[0].originFileObj , 'icon');
     const formData = new FormData();
     formData.append("name", data.name);
-    formData.append("icon",  data?.icon?.[0]?.originFileObj || data?.icon?.[0]);
+    formData.append("file", data.icon?.[0]?.originFileObj || data.icon?.[0]);
+
     try {
-      await createSpeciality(data).unwrap();
+      await createSpeciality(formData).unwrap(); // ✅ Pass FormData, not `data`
       successToast("Speciality created successfully");
+      setOpen(false)
     } catch (error) {
       const err = error as Error;
       errorToast(err.message);
