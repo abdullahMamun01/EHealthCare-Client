@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useSpecialitesQuery } from "@/redux/api/speciality";
 import { ISpecialty } from "@/types/speciality";
 import { Button, Space, Table } from "antd";
 
-import { Heart, Brain, Bone, Activity, Bluetooth as Tooth } from "lucide-react";
 import Image from "next/image";
+import SpecialityActionButtons from "./SpecialityActionButtons";
 
 // const specialtiesData = [
 //   { key: "SP001", specialty: "Urology", icon: <Heart size={24} /> },
@@ -19,7 +20,9 @@ const columns = [
   {
     title: "S.N",
     key: "slNo",
-    render: (_: any, __: ISpecialty, index: number) => <span>#{index + 1}</span>,
+    render: (_: any, __: ISpecialty, index: number) => (
+      <span>#{index + 1}</span>
+    ),
   },
   {
     title: "Name",
@@ -47,14 +50,12 @@ const columns = [
   {
     title: "Actions",
     key: "actions",
-    render: () => (
+    render: (sepeciality: ISpecialty) => (
       <Space size="middle">
         <Button type="primary" ghost size="small">
-          Edit
+          Edit 
         </Button>
-        <Button danger size="small">
-          Delete
-        </Button>
+        <SpecialityActionButtons sepecaility={sepeciality} />
       </Space>
     ),
   },

@@ -45,6 +45,11 @@ function Sidebar() {
       label: 'Specialities',
     },
     {
+      key: 'schedules',
+      icon: <CalendarOutlined />,
+      label: 'Schedules',
+    },
+    {
       key: 'doctors',
       icon: <TeamOutlined />,
       label: 'Doctors',
