@@ -35,7 +35,7 @@ const specialityApi = baseApi.injectEndpoints({
     }),
     deleteSpeciality: build.mutation<IResponse<ISpecialty>, string>({
       query: (id) => ({
-        url: `/doctors/${id}`,
+        url: `/specialties/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["specialties"],
