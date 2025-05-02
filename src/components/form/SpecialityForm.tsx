@@ -10,7 +10,7 @@ const specialitySchema = z.object({
   icon: z.any({required_error: "Please upload an icon"}),
 });
 
-const SpecialityForm = forwardRef(({ onSubmit }: { onSubmit: any }, ref) => {
+const SpecialityForm = forwardRef(({ onSubmit }: { onSubmit: (data: any) => Promise<void> }, ref) => {
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(specialitySchema),
   });
